@@ -4,75 +4,46 @@
  */
 package com.todo.model.administradorlistatareas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author julic
  */
 public class Task {
-    private String titulotarea;
-    private String codigotarea;
-    private String descripcion;
-    private String estadotarea;
-    private ArrayList<String> Task=new ArrayList<>();
+  private String titulo;
+  private String descripcion;
+  private boolean estado;
 
-    public String getCodigotarea() {
-        return codigotarea;
-    }
+  public Task(String titulo, String descripcion, boolean estado) {
+    this.titulo = titulo;
+    this.descripcion = descripcion;
+    this.estado = estado;
+  }
 
-    public void setCodigotarea(String codigotarea) {
-        this.codigotarea = codigotarea;
-    }
+  public String getTitulo() {
+    return titulo;
+  }
 
-    public Task(String titulotarea, String descripcion, String estadotarea, String codigotarea) {
-        this.titulotarea = titulotarea;
-        this.descripcion = descripcion;
-        this.estadotarea = estadotarea;
-        this.codigotarea=codigotarea;
-    }
-   
+  public void setTitulo(String titulo) {
+    this.titulo = titulo;
+  }
 
-    public String getTitulotarea() {
-        return titulotarea;
-    }
+  public String getDescripcion() {
+    return descripcion;
+  }
 
-    public void setTitulotarea(String titulotarea) {
-        this.titulotarea = titulotarea;
-    }
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
+  
+  public String getEstadoString() {
+  return estado ? "Completada" : "Pendiente";
+}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+  public boolean getEstado() {
+    return estado;
+  }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getEstadotarea() {
-        return estadotarea;
-    }
-
-    public void setEstadotarea(String estadotarea) {
-        this.estadotarea = estadotarea;
-    }
-
-    public ArrayList<String> getTask() {
-        return Task;
-    }
-
-    public void setTask(ArrayList<String> Task) {
-        this.Task = Task;
-    }
-
-    public Task add(Task task) {
-        return task;
-    }
-
-    public Task remove(Task task) {
-        return task;
-    }
-
-   
+  public void setEstado(boolean estado) {
+    this.estado = estado;
+  }
 }
