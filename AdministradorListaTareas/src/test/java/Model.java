@@ -3,41 +3,49 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
+import com.todo.model.administradorlistatareas.Task;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
  * @author julic
  */
 public class ModelTest {
-    
-    public ModelTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
+    @Test
+    public void testConstructor() {
+        Task task = new Task("title", "description", true);
+        Assertions.assertEquals("title", task.getTitulo());
+        Assertions.assertEquals("description", task.getDescripcion());
+        Assertions.assertEquals(true, task.getEstado());
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testGetEstadoString() {
+        Task task1 = new Task("title1", "description1", true);
+        Assertions.assertEquals("Completada", task1.getEstadoString());
+        Task task2 = new Task("title2", "description2", false);
+        Assertions.assertEquals("Pendiente", task2.getEstadoString());
+    }
+
+    @Test
+    public void testSetTitulo() {
+        Task task = new Task("title", "description", true);
+        task.setTitulo("new title");
+        Assertions.assertEquals("new title", task.getTitulo());
+    }
+
+    @Test
+    public void testSetDescripcion() {
+        Task task = new Task("title", "description", true);
+        task.setDescripcion("new description");
+        Assertions.assertEquals("new description", task.getDescripcion());
+    }
+
+    @Test
+    public void testSetEstado() {
+        Task task = new Task("title", "description", true);
+        task.setEstado(false);
+        Assertions.assertEquals(false, task.getEstado());
+    }
 }
