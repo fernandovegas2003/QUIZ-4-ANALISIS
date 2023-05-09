@@ -1,4 +1,4 @@
 # Gestor de lista de tareas
 
-Gestor de lista de tareas
-Este es un proyecto simple de gestión de lista de tareas en Java que utiliza la arquitectura MVC. El programa permite a los usuarios crear, leer, actualizar y eliminar tareas de la lista de tareas a través de la consola. Además, se han implementado pruebas unitarias para las clases de modelo y controlador utilizando el framework JUnit, y se ha configurado la integración continua utilizando GitHub Actions para ejecutar automáticamente las pruebas al enviar cambios al repositorio.
+Task List Manager
+This is a simple task list management project in Java that uses the MVC architecture. The program allows users to create, read, update, and delete tasks from the task list through the console. In addition, unit tests have been implemented for the model and controller classes using the JUnit framework, and continuous integration has been configured using GitHub Actions to automatically run tests when committing changes to the repository.
