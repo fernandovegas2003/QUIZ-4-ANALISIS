@@ -5,63 +5,87 @@
 package com.todo.controller.administradorlistatareas;
 
 import com.todo.model.administradorlistatareas.Task;
+import com.todo.view.ConsoleView;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 /**
  *
  * @author julic
  */
 public class TaskController {
-     private ArrayList<Task> tasks = new ArrayList<Task>();
-
-    public void agregarTask(Scanner scanner) {
-        System.out.println("Ingrese los datos de la tarea:");
-        System.out.print("Código: ");
-        String codigotarea = scanner.next();
-        System.out.print("Título: ");
-        scanner.nextLine();
-        String titulotarea = scanner.nextLine();
-        System.out.print("Descripción: ");
-        String descripcion = scanner.nextLine();
-        System.out.print("Estado: ");
-        String estadotarea = scanner.next();
-
-        Task task = new Task(codigotarea, titulotarea, descripcion, estadotarea);
-        tasks.add(task);
-        System.out.println("Tarea agregada exitosamente.");
+     private List<Task> tareas = new ArrayList<>();
+    private ConsoleView vista = new ConsoleView();
+    private final CosoleView view;
+  
+    public TaskController(ConsoleView view) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public boolean eliminarTask(String titulotarea, String codigotarea) {
-        for (Task task : tasks) {
-            if (task.getTitulotarea().equals(titulotarea) && task.getCodigotarea().equals(codigotarea)) {
-                tasks.remove(task);
-                return true;
-            }
-        }
-        return false;
+  public void agregarTarea(String titulo, String descripcion, String estado) {
+    Task tarea = new Task(titulo, descripcion, Boolean.parseBoolean(estado));
+    tareas.add(tarea);
+    vista.mostrarMensaje("Tarea agregada.");
+  }
+
+  public void verTareas() {
+  if (tareas.isEmpty()) {
+    vista.mostrarMensaje("No hay tareas.");
+    return;
+  }
+  for (Task tarea : tareas) {
+    vista.mostrarTarea(tarea.getTitulo(), tarea.getDescripcion(), tarea.getEstado());
+  }
+}
+
+  public void actualizarTarea(int par, String nuevoTitulo, String nuevaDescripcion, boolean nuevoEstado, Object par4) {
+    int indice = leerIndiceTarea();
+    Task tarea = tareas.get(indice);
+    vista.mostrarTarea(tarea.getTitulo(), tarea.getDescripcion(), tarea.getEstado());
+    vista.mostrarMensaje("Ingrese el nuevo título y la nueva descripción:");
+    String titulo = vista.leerTitulo();
+    String descripcion = vista.leerDescripcion();
+    tarea.setTitulo(titulo);
+    tarea.setDescripcion(descripcion);
+    vista.mostrarMensaje("Tarea actualizada.");
+  }
+
+  public void eliminarTarea(int par) {
+    int indice = leerIndiceTarea();
+    Task tarea = tareas.get(indice);
+    vista.mostrarTarea(tarea.getTitulo(), tarea.getDescripcion(), tarea.getEstado());
+    vista.mostrarMensaje("¿Está seguro de que desea eliminar esta tarea? (s/n)");
+    String confirmacion = vista.leerTitulo().toLowerCase();
+    if (confirmacion.equals("s")) {
+      tareas.remove(indice);
+      vista.mostrarMensaje("Tarea eliminada.");
+    }
+  }
+
+  private int leerIndiceTarea() {
+    int indice;
+    do {
+      vista.mostrarMensaje("Ingrese el índice de la tarea (0-" + (tareas.size() - 1) + "):");
+      indice = vista.leerOpcion();
+      if (indice < 0 || indice >= tareas.size()) {
+        vista.mostrarMensaje("Índice no válido.");
+      }
+    } while (indice < 0 || indice >= tareas.size());
+    return indice;
+  }
+
+    public Object getTareas() {
+        return tareas;
     }
 
-    public Task buscarTask(String titulotarea, String codigotarea) {
-        for (Task task : tasks) {
-            if (task.getTitulotarea().equals(titulotarea) && task.getCodigotarea().equals(codigotarea)) {
-                return task;
-            }
-        }
-        return null;
+    public void agregarTarea(String titulo, String descripcion, boolean estado) {
     }
 
-    public Task actualizarTask(Task tareaActualizada) {
-        for (Task tarea : tasks) {
-            if (tarea.getCodigotarea().equals(tareaActualizada.getCodigotarea())) {
-                tarea.setTitulotarea(tareaActualizada.getTitulotarea());
-                tarea.setDescripcion(tareaActualizada.getDescripcion());
-                tarea.setEstadotarea(tareaActualizada.getEstadotarea());
-                System.out.println("La tarea se ha actualizado correctamente.");
-                return tarea;
-            }
-        }
-        System.out.println("No se encontró la tarea especificada.");
-        return null;
+    public void agregarTarea(Task tarea) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void actualizarTarea() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
