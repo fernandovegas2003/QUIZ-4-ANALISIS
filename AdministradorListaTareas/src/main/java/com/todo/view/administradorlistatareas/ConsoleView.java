@@ -4,8 +4,6 @@
  */
 package com.todo.view.administradorlistatareas;
 
-import com.todo.controller.administradorlistatareas.TaskController;
-import com.todo.model.administradorlistatareas.Task;
 import java.util.Scanner;
 
 /**
@@ -13,45 +11,58 @@ import java.util.Scanner;
  * @author julic
  */
 public class ConsoleView {
-    public static void main(String[] args){
-        TaskController taskController=new TaskController();
-        
-        int opciontarea=0;
-        int general=0;
-        
-        do{
-            Scanner scanner= new Scanner(System.in);
-            System.out.println("¿Qué quieres?");
-            System.out.println("1.Crear tarea");
-            System.out.println("2.Buscar tarea");
-            System.out.println("3.Eliminar tarea");
-            System.out.println("4.Actualizar tarea");
-            System.out.println("5.Salir");
-            System.out.println("Ingrese su opción:");
-            general=scanner.nextInt();
-            
-            switch(general){
-                case 1: //crear tarea
-                    System.out.println("Ingrese el titulo de la tarea:");
-                    String titutotarea= scanner.next();
-                    System.out.println("Ingrese el codigo de la tarea:");
-                    String codigotarea= scanner.next();
-                    System.out.println("Ingrese el descripcion de la tarea:");
-                    String descripcion= scanner.next();
-                    System.out.println("Ingrese el estado de la tarea:");
-                    String estadotarea= scanner.next();
-                    
-                    //TaskController taskController= TaskController.agregarTask();
-                    break;
-                case 2:
-                    System.out.println("Ingrese el titulo de la tarea:");
-                    String titutotarea= scanner.next();
-                    System.out.println("Ingrese el codigo de la tarea:");
-                    String codigotarea= scanner.next();
-                    break;
-                
-            }
-        }while(opciontarea!=5);
-        
+   private Scanner scanner = new Scanner(System.in);
+   
+    public String leerTitulo() {
+      System.out.print("Título: ");
+      return scanner.nextLine();
+    }
+
+    public String leerDescripcion() {
+      System.out.print("Descripción: ");
+      return scanner.nextLine();
+    }
+    
+    public String leerEstado() {
+      System.out.print("Descripción: ");
+      return scanner.nextLine();
+    }
+
+    public void mostrarMenu() {
+      System.out.println("------- LISTA DE TAREAS -------");
+      System.out.println("1. Ver tareas");
+      System.out.println("2. Agregar tarea");
+      System.out.println("3. Actualizar tarea");
+      System.out.println("4. Eliminar tarea");
+      System.out.println("5. Salir");
+    }
+
+    public int leerOpcion() {
+      System.out.print("Ingrese una opción: ");
+      return scanner.nextInt();
+    }
+
+    public void mostrarTarea(String titulo, String descripcion, boolean completada) {
+      String estado = completada ? "Completada" : "Pendiente";
+      System.out.println("Título: " + titulo);
+      System.out.println("Descripción: " + descripcion);
+      System.out.println("Estado: " + estado);
+    }
+
+    public void mostrarMensaje(String mensaje) {
+      System.out.println(mensaje);
+    }
+
+    public Object getMensaje() {
+        Object mensaje = null;
+        return mensaje;
+    }
+
+    public void agregarOpcion(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void agregarEntrada(String hacer_la_tarea_de_matemáticas_antes_del_s) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
